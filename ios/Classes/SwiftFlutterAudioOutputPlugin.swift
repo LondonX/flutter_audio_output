@@ -16,8 +16,8 @@ public class SwiftFlutterAudioOutputPlugin: NSObject, FlutterPlugin {
         if (call.method == "getCurrentOutput"){
             result(getCurrentOutput())
         }
-        else if(call.method == "getAvailableInputs"){
-            result(getAvailableInputs())
+        else if(call.method == "getAvailableOutputs"){
+            result(getAvailableOutputs())
         }
         else if(call.method == "changeToSpeaker"){
             result(changeToSpeaker())
@@ -30,9 +30,6 @@ public class SwiftFlutterAudioOutputPlugin: NSObject, FlutterPlugin {
         }
         else if(call.method == "changeToBluetooth"){
             result(changeToBluetooth())
-        }
-        else if(call.method == "getPlatformVersion"){
-            result("iOS " + UIDevice.current.systemVersion)
         }
         else {
             result(FlutterMethodNotImplemented)
@@ -47,15 +44,8 @@ public class SwiftFlutterAudioOutputPlugin: NSObject, FlutterPlugin {
         return ["unknown","0"];
     }
 
-    func getAvailableInputs() -> [[String]]  {
-        var arr = [[String]]()
-        if let inputs = AVAudioSession.sharedInstance().availableInputs {
-//            print("availableInputs \(inputs.count)")
-            for input in inputs {
-                arr.append(getInfo(input));
-             }
-        }
-        return arr;
+    func getAvailableOutputs() -> [[String]]  {
+        return AVAudioSession.sharedInstance().currentRoute.outputs.map(getInfo)
     }
 
     func getInfo(_ input:AVAudioSessionPortDescription) -> [String] {

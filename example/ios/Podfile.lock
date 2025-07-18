@@ -4,6 +4,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_audio_output (0.0.3):
     - Flutter
+  - integration_test (0.0.1):
+    - Flutter
   - just_audio (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -14,6 +16,7 @@ DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - Flutter (from `Flutter`)
   - flutter_audio_output (from `.symlinks/plugins/flutter_audio_output/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
 
@@ -24,6 +27,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_audio_output:
     :path: ".symlinks/plugins/flutter_audio_output/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   just_audio:
     :path: ".symlinks/plugins/just_audio/darwin"
   path_provider_ios:
@@ -33,6 +38,7 @@ SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_audio_output: dfbb99c67d7e8c8b2391f688ac08d43cbbdc56fc
+  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed
   path_provider_ios: 025d0bdaa9f9ab016700ac1e07ff63415cf638e9
 
