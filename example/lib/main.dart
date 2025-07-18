@@ -35,7 +35,6 @@ class _AudioOutputExampleState extends State<AudioOutputExample> {
   bool _isPlaying = false;
   bool _isLoading = false;
   String? _errorMessage;
-  String? _platformVersion;
 
   @override
   void initState() {
@@ -67,9 +66,6 @@ class _AudioOutputExampleState extends State<AudioOutputExample> {
 
   Future<void> _initializeAudioOutput() async {
     try {
-      // Get platform version
-      _platformVersion = await FlutterAudioOutput.getPlatformVersion();
-
       // Set up listener for audio device changes
       FlutterAudioOutput.setListener(() async {
         await _refreshAudioDevices();
@@ -93,7 +89,7 @@ class _AudioOutputExampleState extends State<AudioOutputExample> {
 
     try {
       final current = await FlutterAudioOutput.getCurrentOutput();
-      final available = await FlutterAudioOutput.getAvailableInputs();
+      final available = await FlutterAudioOutput.getAvailableOutputs();
 
       if (mounted) {
         setState(() {
@@ -235,19 +231,6 @@ class _AudioOutputExampleState extends State<AudioOutputExample> {
       ),
       body: Column(
         children: [
-          // Platform version info
-          if (_platformVersion != null)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              color: Colors.grey[100],
-              child: Text(
-                'Platform: $_platformVersion',
-                style: Theme.of(context).textTheme.bodySmall,
-                textAlign: TextAlign.center,
-              ),
-            ),
-
           // Error message display
           if (_errorMessage != null)
             Container(

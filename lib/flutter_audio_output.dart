@@ -59,29 +59,17 @@ class FlutterAudioOutput {
   static const MethodChannel _channel = MethodChannel('flutter_audio_output');
   static void Function()? _onInputChanged;
 
-  /// Gets the platform version
-  static Future<String?> getPlatformVersion() {
-    return FlutterAudioOutputPlatform.instance.getPlatformVersion();
-  }
-
   /// Gets the current audio output device
-  static Future<AudioInput> getCurrentOutput() async {
-    try {
-      final dynamic result = await _channel.invokeMethod('getCurrentOutput');
-      if (result is List && result.length >= 2) {
-        return AudioInput(
-            result[0].toString(), int.parse(result[1].toString()));
-      }
-      return const AudioInput('Unknown', 0);
-    } on PlatformException catch (e) {
-      throw Exception('Failed to get current output: ${e.message}');
-    }
+  @Deprecated(
+      "Current Output is not accurate on android, it just the first value of getAvailableOutputs()")
+  static Future<AudioInput?> getCurrentOutput() async {
+    return (await getAvailableOutputs()).firstOrNull;
   }
 
   /// Gets the list of available audio input devices
-  static Future<List<AudioInput>> getAvailableInputs() async {
+  static Future<List<AudioInput>> getAvailableOutputs() async {
     try {
-      final dynamic result = await _channel.invokeMethod('getAvailableInputs');
+      final dynamic result = await _channel.invokeMethod('getAvailableOutputs');
       if (result is List) {
         return result.map((dynamic data) {
           if (data is List && data.length >= 2) {

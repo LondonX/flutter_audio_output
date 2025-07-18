@@ -130,9 +130,9 @@ void main() {
         expect(currentOutput, isNotNull);
 
         // Test getting available inputs
-        final availableInputs = await FlutterAudioOutput.getAvailableInputs();
-        expect(availableInputs, isNotNull);
-        expect(availableInputs, isA<List<AudioInput>>());
+        final availableOutputs = await FlutterAudioOutput.getAvailableOutputs();
+        expect(availableOutputs, isNotNull);
+        expect(availableOutputs, isA<List<AudioInput>>());
       } catch (e) {
         // In CI environment, actual audio hardware might not be available
         // So we just verify the methods can be called without crashing

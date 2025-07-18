@@ -19,14 +19,6 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelFlutterAudioOutput>());
   });
 
-  test('getPlatformVersion', () async {
-    MockFlutterAudioOutputPlatform fakePlatform =
-        MockFlutterAudioOutputPlatform();
-    FlutterAudioOutputPlatform.instance = fakePlatform;
-
-    expect(await FlutterAudioOutput.getPlatformVersion(), '42');
-  });
-
   test('AudioInput equality', () {
     const input1 = AudioInput('Speaker', 2);
     const input2 = AudioInput('Speaker', 2);
